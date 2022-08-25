@@ -6,9 +6,9 @@ namespace Illiterati.Quiz.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public Author Author { get; set; }
-        public List<Quote> Quotes { get; set; }
-        public List<Movement> Movements { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual ICollection<Quote>? Quotes { get; set; }
+        public virtual ICollection<Genre>? Genres { get; set; }
     }
 
     public class Quote
@@ -16,9 +16,9 @@ namespace Illiterati.Quiz.Entities
         public int Id { get; set; }
         public string Text { get; set; }
         public int WorkId { get; set; }
-        public Work Work { get; set; }
+        public virtual Work Work { get; set; }
         public int AuthorId { get; set; }
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
     }
 
     public class Author
@@ -27,16 +27,16 @@ namespace Illiterati.Quiz.Entities
         public string Name { get { return $"{FirstName} {LastName}"; } }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Work> Works { get; set; }
-        public List<Movement> Movements { get; set; }
-        public List<Quote> Quotes { get; set; }
+        public virtual ICollection<Work>? Works { get; set; }
+        public virtual ICollection<Genre>? Genres { get; set; }
+        public virtual ICollection<Quote>? Quotes { get; set; }
     }
 
-    public class Movement
+    public class Genre
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Work> Works { get; set; }
-        public List<Author> Authors { get; set; }
+        public ICollection<Work>? Works { get; set; }
+        public ICollection<Author>? Authors { get; set; }
     }
 }
